@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>State management at scale — Jainam Shah</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="back-link">
+            <a href="logs.html">← Back to logs</a>
+        </div>
+
+        <article>
+            <header>
+                <h1>State management at scale</h1>
+                <div class="article-meta">
+                    <span class="log-meta">Flutter · Architecture</span>
+                    <span class="log-date">September 2024</span>
+                </div>
+            </header>
+
+            <h2>Growing Pains</h2>
+            <p>App grew from 5 screens to 25+ screens. Provider-based state management became a web of dependencies.
+                Debugging state changes required tracing through 6+ providers.</p>
+
+            <p>What started as a simple app with basic Provider usage had evolved into a complex application where state
+                changes cascaded through multiple providers in unpredictable ways.</p>
+
+            <h2>The Breaking Point</h2>
+            <p>A simple user profile update was triggering rebuilds in 12 different widgets across 4 screens. Debugging
+                required adding print statements throughout the provider chain to understand the flow.</p>
+
+            <p>New team members struggled to understand which provider controlled what state, and we were spending more
+                time debugging state issues than building features.</p>
+
+            <h2>Migration Strategy</h2>
+            <p>Gradually migrated to Bloc pattern, starting with the most complex features. Kept Provider for simple UI
+                state, used Bloc for business logic and cross-screen state.</p>
+
+            <p>We didn't do a big-bang rewrite. Instead, we identified the most problematic areas and migrated them one
+                by one over 3 months.</p>
+
+            <h2>Hybrid Approach</h2>
+            <ul>
+                <li>Bloc for user authentication, app settings, complex forms</li>
+                <li>Provider for theme, simple toggles, local UI state</li>
+                <li>Repository pattern to abstract data sources</li>
+                <li>Clear boundaries between UI state and business state</li>
+            </ul>
+
+            <h2>Implementation Guidelines</h2>
+            <p>We established clear rules: if state affects multiple screens or involves business logic, use Bloc. If
+                it's purely UI state for a single widget tree, Provider is fine.</p>
+
+            <p>This hybrid approach let us keep the simplicity of Provider where it made sense while gaining the
+                predictability of Bloc for complex state.</p>
+
+            <h2>Results</h2>
+            <p>Development velocity increased as team could work on features independently. Bug reproduction became
+                easier with predictable state flows. Testing coverage improved significantly.</p>
+
+            <p>Most importantly, onboarding new developers became much faster. The clear separation between UI and
+                business state made the codebase more approachable.</p>
+        </article>
+
+        <footer>
+            <p>© Jainam Shah · <a href="logs.html">All Logs</a> · <a href="index.html">Home</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>

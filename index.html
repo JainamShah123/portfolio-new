@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jainam Shah — Developer Logs</title>
+    <title>Jainam Shah — Developer</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
 
     <!-- Styles -->
@@ -18,478 +18,114 @@
 </head>
 
 <body>
-
-    <!-- Navigation -->
-    <nav id="nav">
-        <div class="nav-content">
-            <div class="nav-logo">Jainam Shah</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#logs" class="nav-link">Dev Logs</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <main>
-
-        <!-- Home Section -->
-        <section id="home" class="page-section">
-            <header>
-                <h1>Jainam Shah</h1>
-                <p class="intro muted">
-                    Software developer focused on building reliable systems.
-                    Actively learning deep skills in Frontend, Backend and Database.
-                </p>
-            </header>
-
-            <div class="divider"></div>
-
-            <!-- Current Work -->
-            <div style="margin-bottom: 48px;">
-                <h3>Current Work</h3>
-                <p class="muted">
-                    Leading the Fullscale development for a Non-profit and religious organization's platform.
-                    Planning and building reliable system that reduces cost and increases the reliability refleting the
-                    strong organization and community
-                </p>
-                <div style="margin-top: 16px;">
-                    <span class="tech-tag"
-                        style="margin-right: 8px; margin-bottom: 8px; display: inline-block;">Flutter</span>
-                    <span class="tech-tag"
-                        style="margin-right: 8px; margin-bottom: 8px; display: inline-block;">Dart</span>
-                    <span class="tech-tag"
-                        style="margin-right: 8px; margin-bottom: 8px; display: inline-block;">Firebase</span>
-                    <span class="tech-tag"
-                        style="margin-right: 8px; margin-bottom: 8px; display: inline-block;">PostgreSQL</span>
-                </div>
-            </div>
-
-            <!-- Recent Achievements -->
-            <div style="margin-bottom: 48px;">
-                <h3>Recent Wins</h3>
-                <ul style="margin: 16px 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
-                    <li>Simplified the architecture from complex Dependency Injection to Managable reusbale MVVM
-                        architecture</li>
-                    <li>Built Strapi like backend serving the website simply and easily</li>
-                    <li>Implemented cross platform admin panel for easy updates for admins</li>
-                    <li>Integrated Razorpay in Flutter web (platform not officially supported by razorpay plugin)</li>
-                </ul>
-            </div>
-
-            <!-- Learning -->
-            <div style="margin-bottom: 48px;">
-                <h3>Currently Learning</h3>
-                <p class="muted">
-                    Diving deeper into distributed systems and database design.
-                    Exploring Rust for performance-critical backend services.
-                    Always refining my understanding of when to optimize vs when to ship.
-                </p>
-            </div>
-
-            <!-- Quick Links -->
-            <div>
-                <h3>Quick Access</h3>
-                <div style="display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap;">
-                    <a href="#"
-                        style="padding: 8px 16px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; display: inline-block;">GitHub</a>
-                    <a href="#"
-                        style="padding: 8px 16px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; display: inline-block;">LinkedIn</a>
-                    <a href="#"
-                        style="padding: 8px 16px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; display: inline-block;">Resume
-                        PDF</a>
-                    <a href="mailto:hello@jainam.dev"
-                        style="padding: 8px 16px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; display: inline-block;">Email</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="page-section hidden">
-            <h2>Experience</h2>
-            <p class="muted" style="margin-bottom: 40px;">
-                Building production systems and leading frontend architecture decisions.
+        <!-- Header -->
+        <header>
+            <h1>Hi, I'm Jainam.</h1>
+            <p class="intro">
+                I build, test and ship reliable systems. <br>
+                Prefer simple and boring code.
             </p>
+        </header>
 
-            <div class="experience-item">
-                <div class="experience-meta">2023 — Present</div>
-                <h3>Senior Flutter Developer</h3>
-                <p class="muted">
-                    Design systems, performance-sensitive UI, adaptive layouts,
-                    and long-term maintainable frontend architecture.
-                </p>
-
-                <p>Leading frontend architecture for a fintech platform serving 50k+ users.
-                    Built a comprehensive design system that reduced development time by 40% and
-                    improved UI consistency across 12 different app screens.</p>
-
-                <h4>Key Achievements:</h4>
-                <ul style="margin: 8px 0; padding-left: 20px; color: var(--muted);">
-                    <li>Optimized app startup time from 3.2s to 1.1s</li>
-                    <li>Implemented adaptive layouts supporting 6 screen sizes</li>
-                    <li>Reduced memory usage by 35% through widget optimization</li>
-                    <li>Built reusable component library used across 4 different products</li>
-                    <li>Mentored 2 junior developers on Flutter best practices</li>
-                </ul>
-
-                <div class="experience-tech">
-                    <span class="tech-tag">Flutter</span>
-                    <span class="tech-tag">Dart</span>
-                    <span class="tech-tag">Bloc</span>
-                    <span class="tech-tag">Firebase</span>
-                    <span class="tech-tag">REST APIs</span>
-                    <span class="tech-tag">Git</span>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-meta">2021 — 2023</div>
-                <h3>Flutter Developer</h3>
-                <p class="muted">
-                    Production apps, state management, API integration,
-                    and cross-platform UI consistency.
-                </p>
-
-                <p>Developed and maintained 3 production Flutter applications with complex
-                    state management requirements. Collaborated with backend teams to design
-                    efficient API contracts and implemented robust offline-first architectures.</p>
-
-                <h4>Key Projects:</h4>
-                <ul style="margin: 8px 0; padding-left: 20px; color: var(--muted);">
-                    <li>E-commerce app with real-time inventory sync (15k+ daily users)</li>
-                    <li>Social platform with offline message queuing and sync</li>
-                    <li>Analytics dashboard with custom chart widgets and data visualization</li>
-                    <li>Payment integration with multiple providers and fraud detection</li>
-                </ul>
-
-                <h4>Technical Contributions:</h4>
-                <ul style="margin: 8px 0; padding-left: 20px; color: var(--muted);">
-                    <li>Implemented offline-first architecture with conflict resolution</li>
-                    <li>Built custom animation system for smooth 60fps interactions</li>
-                    <li>Optimized image loading and caching reducing bandwidth by 60%</li>
-                    <li>Created automated testing pipeline with 85% code coverage</li>
-                </ul>
-
-                <div class="experience-tech">
-                    <span class="tech-tag">Flutter</span>
-                    <span class="tech-tag">Provider</span>
-                    <span class="tech-tag">SQLite</span>
-                    <span class="tech-tag">GraphQL</span>
-                    <span class="tech-tag">WebSockets</span>
-                    <span class="tech-tag">Docker</span>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-meta">2020 — 2021</div>
-                <h3>Junior Mobile Developer</h3>
-                <p class="muted">
-                    Learning production development, code reviews, and
-                    collaborative development practices.
-                </p>
-
-                <p>Started my journey in mobile development, focusing on learning best practices
-                    and contributing to existing codebases. Gained experience in testing, debugging,
-                    and working within established development workflows.</p>
-
-                <h4>Learning Focus:</h4>
-                <ul style="margin: 8px 0; padding-left: 20px; color: var(--muted);">
-                    <li>Test-driven development practices and unit testing</li>
-                    <li>Git workflows, code review processes, and team collaboration</li>
-                    <li>Performance profiling and optimization techniques</li>
-                    <li>UI/UX principles and responsive design patterns</li>
-                    <li>API integration and error handling strategies</li>
-                </ul>
-
-                <h4>Early Contributions:</h4>
-                <ul style="margin: 8px 0; padding-left: 20px; color: var(--muted);">
-                    <li>Fixed 20+ UI bugs and improved accessibility compliance</li>
-                    <li>Implemented feature flags system for gradual rollouts</li>
-                    <li>Created documentation for onboarding new team members</li>
-                </ul>
-
-                <div class="experience-tech">
-                    <span class="tech-tag">Flutter</span>
-                    <span class="tech-tag">Dart</span>
-                    <span class="tech-tag">Git</span>
-                    <span class="tech-tag">Unit Testing</span>
-                    <span class="tech-tag">REST APIs</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Logs Index Section -->
-        <section id="logs" class="page-section hidden">
+        <!-- Dev Logs (Core) -->
+        <section>
             <h2>Dev Logs</h2>
-            <p class="muted" style="margin-bottom: 40px;">
-                Engineering notes, postmortems, and design decisions.
-                These are not success stories — they are thinking records.
+            <p class="section-description">
+                Just me journaling my journey and blabbering about what I'm building
             </p>
 
-            <div class="log" onclick="showLog('log-001')">
-                <div class="log-title">
-                    <h3>Log 001 — High-frequency UI updates without jank</h3>
-                    <span>Flutter · Performance</span>
-                </div>
-                <p class="muted">
-                    Handling rapid state updates while preserving scroll,
-                    animations, and frame budget.
-                </p>
+            <div class="log-item">
+                <a href="log-001.html">
+                    <div class="log-header">
+                        <h3>High-frequency UI updates without jank</h3>
+                        <span class="log-date">Dec 2024</span>
+                    </div>
+                    <p>Handling rapid state updates while preserving scroll, animations, and frame budget.</p>
+                    <span class="log-meta">Flutter · Performance</span>
+                </a>
             </div>
 
-            <div class="log" onclick="showLog('log-002')">
-                <div class="log-title">
-                    <h3>Log 002 — Event-driven backend for small teams</h3>
-                    <span>Backend · Architecture</span>
-                </div>
-                <p class="muted">
-                    Data modeling, queues, and trade-offs when scale is expected
-                    but certainty is low.
-                </p>
+            <div class="log-item">
+                <a href="log-002.html">
+                    <div class="log-header">
+                        <h3>Event-driven backend for small teams</h3>
+                        <span class="log-date">Nov 2024</span>
+                    </div>
+                    <p>Data modeling, queues, and trade-offs when scale is expected but certainty is low.</p>
+                    <span class="log-meta">Backend · Architecture</span>
+                </a>
             </div>
 
-            <div class="log" onclick="showLog('log-003')">
-                <div class="log-title">
-                    <h3>Log 003 — Glass UI without destroying performance</h3>
-                    <span>UI · Rendering</span>
-                </div>
-                <p class="muted">
-                    Blur, shaders, and when visual ambition needs to be cut.
-                </p>
+            <div class="log-item">
+                <a href="log-003.html">
+                    <div class="log-header">
+                        <h3>Glass UI without destroying performance</h3>
+                        <span class="log-date">Oct 2024</span>
+                    </div>
+                    <p>Blur, shaders, and when visual ambition needs to be cut.</p>
+                    <span class="log-meta">UI · Rendering</span>
+                </a>
             </div>
 
-            <div class="log" onclick="showLog('log-004')">
-                <div class="log-title">
-                    <h3>Log 004 — State management at scale</h3>
-                    <span>Flutter · Architecture</span>
-                </div>
-                <p class="muted">
-                    When Provider becomes painful and Bloc feels like overkill.
-                </p>
+            <div class="view-more">
+                <a href="logs.html">View all logs →</a>
             </div>
         </section>
 
-        <!-- Individual Log Pages -->
-        <section id="log-001" class="page-section hidden">
-            <div style="margin-bottom: 24px;">
-                <a href="#logs" onclick="showSection('logs')"
-                    style="color: var(--muted); font-size: 0.9rem; border: none;">← Back to Dev Logs</a>
+        <!-- How I Work -->
+        <section>
+            <h2>How I think, How I build</h2>
+
+            <div class="work-item">
+                <h3>Architecture First</h3>
+                <p>I start with simple, maintainable solutions and evolve them based on real needs.
+                    Prefer boring technology that works over exciting technology that might work.</p>
             </div>
 
-            <h2>Log 001 — High-frequency UI updates without jank</h2>
-            <p class="muted" style="margin-bottom: 32px;">Flutter · Performance</p>
+            <div class="work-item">
+                <h3>Performance Matters</h3>
+                <p>60fps is non-negotiable. I optimize for user experience first, then developer experience.
+                    Measure everything, assume nothing.</p>
+            </div>
 
-            <h3>The Problem</h3>
-            <p>Real-time trading app needed to update 200+ price widgets every 100ms without dropping frames. Initial
-                implementation caused severe UI jank and battery drain.</p>
-
-            <p>Users complained about sluggish scrolling during market hours. Battery life dropped from 8 hours to 3
-                hours of active use. The app felt broken when it mattered most.</p>
-
-            <h3>Investigation</h3>
-            <p>Flutter DevTools revealed excessive widget rebuilds. Each price update triggered full
-                <code>ListView</code> reconstruction, causing 60fps drops to 15fps during market hours.
-            </p>
-
-            <p>The issue was in our state management approach. We were using a single <code>ChangeNotifier</code> for
-                all price data, so any price change rebuilt the entire list of 200+ widgets.</p>
-
-            <h3>Solution</h3>
-            <p>Implemented selective widget updates using <code>ValueListenableBuilder</code> with individual price
-                notifiers. Added frame budget monitoring to batch updates when system is under pressure.</p>
-
-            <p>Key changes:</p>
-            <ul style="margin: 16px 0; padding-left: 20px; color: var(--muted);">
-                <li>Split monolithic state into individual <code>ValueNotifier&lt;Price&gt;</code> instances</li>
-                <li>Used <code>ValueListenableBuilder</code> for each price widget</li>
-                <li>Implemented frame budget monitoring with <code>SchedulerBinding</code></li>
-                <li>Added update batching when frame time exceeded 16ms</li>
-                <li>Cached widget instances for unchanged prices</li>
-            </ul>
-
-            <h3>Results</h3>
-            <p>Maintained 60fps during peak trading hours. Battery usage reduced by 40%. Memory allocation dropped from
-                2MB/s to 200KB/s during active updates.</p>
-
-            <p>More importantly, user complaints about performance disappeared. The app now felt responsive even during
-                the most volatile market conditions.</p>
-
-            <h3>Lessons</h3>
-            <p>Widget granularity matters more than clever state management. Sometimes the best optimization is knowing
-                when not to update.</p>
-
-            <p>Performance isn't just about algorithms — it's about user experience. A technically perfect solution that
-                drops frames is worse than a simple solution that maintains 60fps.</p>
+            <div class="work-item">
+                <h3>Ship and Iterate</h3>
+                <p>Perfect is the enemy of good. I build MVPs that solve real problems,
+                    then iterate based on user feedback and data.</p>
+            </div>
         </section>
 
-        <section id="log-002" class="page-section hidden">
-            <div style="margin-bottom: 24px;">
-                <a href="#logs" onclick="showSection('logs')"
-                    style="color: var(--muted); font-size: 0.9rem; border: none;">← Back to Dev Logs</a>
+        <!-- Experience (Collapsed) -->
+        <section>
+            <h2>Experience</h2>
+
+            <div class="experience-summary">
+                <p>5+ years building production Flutter apps, from fintech platforms serving 50k+ users
+                    to complex state management systems. Led frontend architecture decisions and mentored junior
+                    developers.</p>
             </div>
 
-            <h2>Log 002 — Event-driven backend for small teams</h2>
-            <p class="muted" style="margin-bottom: 32px;">Backend · Architecture</p>
-
-            <h3>Context</h3>
-            <p>Small team (3 devs) building a SaaS product. Needed architecture that could handle 10x growth without
-                complete rewrites, but couldn't over-engineer for uncertain scale.</p>
-
-            <p>We were at 500 users, expecting to hit 5k within a year. Classic startup dilemma: build for scale you
-                don't have yet, or risk painful rewrites later.</p>
-
-            <h3>Approach</h3>
-            <p>Started with simple REST API, then gradually introduced event sourcing for critical user actions. Used
-                PostgreSQL as both primary store and event log to avoid operational complexity.</p>
-
-            <p>The key insight was selective event sourcing. Not everything needs to be an event — only the
-                business-critical operations that benefit from auditability and replay capability.</p>
-
-            <h3>Key Decisions</h3>
-            <ul style="margin: 16px 0; padding-left: 20px; color: var(--muted);">
-                <li>Events only for business-critical operations (payments, user state changes)</li>
-                <li>CRUD for everything else until proven otherwise</li>
-                <li>Single PostgreSQL database to minimize deployment complexity</li>
-                <li>Background job processing with simple retry logic</li>
-                <li>Event store as a table, not a separate system</li>
-            </ul>
-
-            <h3>Implementation Details</h3>
-            <p>Used a simple events table with JSON payloads. Event handlers were just functions that could be called
-                synchronously or queued for background processing.</p>
-
-            <p>This gave us the benefits of event sourcing (auditability, replay, eventual consistency) without the
-                operational overhead of Kafka or EventStore.</p>
-
-            <h3>Trade-offs</h3>
-            <p>Sacrificed some theoretical scalability for operational simplicity. Team could deploy and debug easily,
-                which mattered more at our stage than perfect architecture.</p>
-
-            <p>We knew we'd eventually need to extract services and use proper message queues, but this approach bought
-                us 18 months of rapid development.</p>
-
-            <h3>Outcome</h3>
-            <p>Handled 5x user growth with minimal changes. When we did need to scale, the event foundation made it
-                straightforward to extract services.</p>
-
-            <p>The event log became invaluable for debugging production issues and understanding user behavior patterns.
-            </p>
+            <div class="view-more">
+                <a href="experience.html">View detailed experience →</a>
+            </div>
         </section>
 
-        <section id="log-003" class="page-section hidden">
-            <div style="margin-bottom: 24px;">
-                <a href="#logs" onclick="showSection('logs')"
-                    style="color: var(--muted); font-size: 0.9rem; border: none;">← Back to Dev Logs</a>
+        <!-- Contact -->
+        <section>
+            <h2>Contact</h2>
+            <div class="contact-links">
+                <a href="mailto:hello@jainam.dev">hello@jainam.dev</a>
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
             </div>
-
-            <h2>Log 003 — Glass UI without destroying performance</h2>
-            <p class="muted" style="margin-bottom: 32px;">UI · Rendering</p>
-
-            <h3>The Vision</h3>
-            <p>Design team wanted glassmorphism effects throughout the app. Beautiful mockups with layered blur,
-                transparency, and subtle shadows.</p>
-
-            <p>The designs were genuinely stunning. Translucent cards floating over blurred backgrounds, with subtle
-                depth and lighting effects. It looked like the future of mobile UI.</p>
-
-            <h3>Reality Check</h3>
-            <p>Initial implementation using <code>BackdropFilter</code> everywhere caused frame drops on mid-range
-                Android devices. GPU memory usage spiked, and older devices became unusable.</p>
-
-            <p>The problem was that blur effects are expensive. Each <code>BackdropFilter</code> requires the GPU to
-                sample and process pixels from layers below, and we had 6-8 blur effects on some screens.</p>
-
-            <h3>Performance Impact</h3>
-            <ul style="margin: 16px 0; padding-left: 20px; color: var(--muted);">
-                <li>Frame rate dropped from 60fps to 25fps on Pixel 4a</li>
-                <li>GPU memory usage increased by 300%</li>
-                <li>Battery drain increased by 60% during active use</li>
-                <li>Older devices (3+ years) became completely unusable</li>
-            </ul>
-
-            <h3>Compromise Strategy</h3>
-            <p>Limited blur effects to 3 key screens maximum. Used static gradient overlays instead of live blur where
-                possible. Implemented device capability detection with fallback designs for low-end devices.</p>
-
-            <h3>Technical Implementation</h3>
-            <p>Built a <code>PerformanceAwareBlur</code> widget that monitors frame times and automatically disables
-                effects when performance degrades. Saved design integrity while maintaining usability.</p>
-
-            <p>The widget tracked frame render times and would progressively disable blur effects if frame budget was
-                consistently exceeded.</p>
-
-            <h3>Learning</h3>
-            <p>Beautiful design means nothing if users can't interact with it smoothly. Sometimes the best design
-                decision is knowing when to say no.</p>
-
-            <p>We kept the blur effects on the most important screens (onboarding, payment flow) and used simpler
-                alternatives elsewhere. Users got the premium feel without the performance cost.</p>
-        </section>
-
-        <section id="log-004" class="page-section hidden">
-            <div style="margin-bottom: 24px;">
-                <a href="#logs" onclick="showSection('logs')"
-                    style="color: var(--muted); font-size: 0.9rem; border: none;">← Back to Dev Logs</a>
-            </div>
-
-            <h2>Log 004 — State management at scale</h2>
-            <p class="muted" style="margin-bottom: 32px;">Flutter · Architecture</p>
-
-            <h3>Growing Pains</h3>
-            <p>App grew from 5 screens to 25+ screens. Provider-based state management became a web of dependencies.
-                Debugging state changes required tracing through 6+ providers.</p>
-
-            <p>What started as a simple app with basic Provider usage had evolved into a complex application where state
-                changes cascaded through multiple providers in unpredictable ways.</p>
-
-            <h3>The Breaking Point</h3>
-            <p>A simple user profile update was triggering rebuilds in 12 different widgets across 4 screens. Debugging
-                required adding print statements throughout the provider chain to understand the flow.</p>
-
-            <p>New team members struggled to understand which provider controlled what state, and we were spending more
-                time debugging state issues than building features.</p>
-
-            <h3>Migration Strategy</h3>
-            <p>Gradually migrated to Bloc pattern, starting with the most complex features. Kept Provider for simple UI
-                state, used Bloc for business logic and cross-screen state.</p>
-
-            <p>We didn't do a big-bang rewrite. Instead, we identified the most problematic areas and migrated them one
-                by one over 3 months.</p>
-
-            <h3>Hybrid Approach</h3>
-            <ul style="margin: 16px 0; padding-left: 20px; color: var(--muted);">
-                <li>Bloc for user authentication, app settings, complex forms</li>
-                <li>Provider for theme, simple toggles, local UI state</li>
-                <li>Repository pattern to abstract data sources</li>
-                <li>Clear boundaries between UI state and business state</li>
-            </ul>
-
-            <h3>Implementation Guidelines</h3>
-            <p>We established clear rules: if state affects multiple screens or involves business logic, use Bloc. If
-                it's purely UI state for a single widget tree, Provider is fine.</p>
-
-            <p>This hybrid approach let us keep the simplicity of Provider where it made sense while gaining the
-                predictability of Bloc for complex state.</p>
-
-            <h3>Results</h3>
-            <p>Development velocity increased as team could work on features independently. Bug reproduction became
-                easier with predictable state flows. Testing coverage improved significantly.</p>
-
-            <p>Most importantly, onboarding new developers became much faster. The clear separation between UI and
-                business state made the codebase more approachable.</p>
         </section>
 
         <footer>
-            <p>
-                © Jainam Shah · <a href="#">GitHub</a> · <a href="#">LinkedIn</a>
-            </p>
+            <p>© Jainam Shah</p>
         </footer>
-
     </main>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-
 </body>
 
 </html>

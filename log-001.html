@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>High-frequency UI updates without jank — Jainam Shah</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="back-link">
+            <a href="logs.html">← Back to logs</a>
+        </div>
+
+        <article>
+            <header>
+                <h1>High-frequency UI updates without jank</h1>
+                <div class="article-meta">
+                    <span class="log-meta">Flutter · Performance</span>
+                    <span class="log-date">December 2024</span>
+                </div>
+            </header>
+
+            <h2>The Problem</h2>
+            <p>Real-time trading app needed to update 200+ price widgets every 100ms without dropping frames. Initial
+                implementation caused severe UI jank and battery drain.</p>
+
+            <p>Users complained about sluggish scrolling during market hours. Battery life dropped from 8 hours to 3
+                hours of active use. The app felt broken when it mattered most.</p>
+
+            <h2>Investigation</h2>
+            <p>Flutter DevTools revealed excessive widget rebuilds. Each price update triggered full
+                <code>ListView</code> reconstruction, causing 60fps drops to 15fps during market hours.
+            </p>
+
+            <p>The issue was in our state management approach. We were using a single <code>ChangeNotifier</code> for
+                all price data, so any price change rebuilt the entire list of 200+ widgets.</p>
+
+            <h2>Solution</h2>
+            <p>Implemented selective widget updates using <code>ValueListenableBuilder</code> with individual price
+                notifiers. Added frame budget monitoring to batch updates when system is under pressure.</p>
+
+            <p>Key changes:</p>
+            <ul>
+                <li>Split monolithic state into individual <code>ValueNotifier&lt;Price&gt;</code> instances</li>
+                <li>Used <code>ValueListenableBuilder</code> for each price widget</li>
+                <li>Implemented frame budget monitoring with <code>SchedulerBinding</code></li>
+                <li>Added update batching when frame time exceeded 16ms</li>
+                <li>Cached widget instances for unchanged prices</li>
+            </ul>
+
+            <h2>Results</h2>
+            <p>Maintained 60fps during peak trading hours. Battery usage reduced by 40%. Memory allocation dropped from
+                2MB/s to 200KB/s during active updates.</p>
+
+            <p>More importantly, user complaints about performance disappeared. The app now felt responsive even during
+                the most volatile market conditions.</p>
+
+            <h2>Lessons</h2>
+            <p>Widget granularity matters more than clever state management. Sometimes the best optimization is knowing
+                when not to update.</p>
+
+            <p>Performance isn't just about algorithms — it's about user experience. A technically perfect solution that
+                drops frames is worse than a simple solution that maintains 60fps.</p>
+        </article>
+
+        <footer>
+            <p>© Jainam Shah · <a href="logs.html">All Logs</a> · <a href="index.html">Home</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>
