@@ -38,9 +38,15 @@ Copy-paste HTML blocks for your dev logs. All components are modular, nestable, 
 <mark>Highlight</mark>
 <code>inline code</code>
 
-<!-- Quote -->
+<!-- Basic Quote -->
 <blockquote>
     <p>Quoted text</p>
+</blockquote>
+
+<!-- Quote Card with Author -->
+<blockquote class="quote-card">
+    <p>The quote text goes here.</p>
+    <footer>— Author Name</footer>
 </blockquote>
 ```
 

@@ -569,6 +569,31 @@ blockquote p {
     margin: 0;
 }
 
+.quote-card {
+    margin: 24px 0;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.02);
+    border-left: 4px solid var(--fg);
+    border-radius: 0 8px 8px 0;
+}
+
+.quote-card p {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 4px;
+    color: var(--fg);
+    line-height: 1.5;
+}
+
+.quote-card footer {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
 /* Text Emphasis */
 strong {
     font-weight: 600;

@@ -4,75 +4,240 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>High-frequency UI updates without jank — Jainam Shah</title>
-
-    <!-- Fonts -->
+    <title>Template Examples — Jainam Shah</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <main>
         <div class="back-link">
-            <a href="logs.html">← Back to logs</a>
+            <a href="index.html">← Back to Home</a>
         </div>
 
         <article>
             <header>
-                <h1>Building Resilient Frontend</h1>
+                <h1>Resilient Frontend</h1>
                 <div class="article-meta">
-                    <span class="log-meta">Flutter · Performance</span>
-                    <span class="log-date">December 2024</span>
+                    <span class="log-meta">Python · Performance</span>
+                    <span class="log-date">17 February 2026</span>
                 </div>
             </header>
 
-            <h2>The Problem</h2>
-            <p>Real-time trading app needed to update 200+ price widgets every 100ms without dropping frames. Initial
-                implementation caused severe UI jank and battery drain.</p>
 
-            <p>Users complained about sluggish scrolling during market hours. Battery life dropped from 8 hours to 3
-                hours of active use. The app felt broken when it mattered most.</p>
+            <!-- Quote Card with Author -->
+            <blockquote class="quote-card">
+                <p>Stability comes from designing for failures, not avoiding it</p>
+                <footer>— Source: Release IT, Michael T. Nygard</footer>
+            </blockquote>
+            <img src="assets/log-01.avif" alt="Resilience digaram">
+            <h2>Fresh Start</h2>
+            <p>Writing HTML manually for dev logs was repetitive. Each post required recreating <strong>the same
+                    patterns</strong> — code blocks, callouts, image grids — leading to inconsistent markup and wasted
+                time.</p>
 
-            <h2>Investigation</h2>
-            <p>Flutter DevTools revealed excessive widget rebuilds. Each price update triggered full
-                <code>ListView</code> reconstruction, causing 60fps drops to 15fps during market hours.
-            </p>
+            <div class="callout callout-warning">
+                <strong>Issue:</strong>
+                <p>No reusable component system meant copy-pasting markup between logs, causing style drift.</p>
+            </div>
 
-            <p>The issue was in our state management approach. We were using a single <code>ChangeNotifier</code> for
-                all price data, so any price change rebuilt the entire list of 200+ widgets.</p>
+            <h2>The Solution</h2>
+            <p>Created a library of <em>modular HTML templates</em> covering all rich text editor features. Each
+                component is:</p>
 
-            <h2>Solution</h2>
-            <p>Implemented selective widget updates using <code>ValueListenableBuilder</code> with individual price
-                notifiers. Added frame budget monitoring to batch updates when system is under pressure.</p>
-
-            <p>Key changes:</p>
             <ul>
-                <li>Split monolithic state into individual <code>ValueNotifier&lt;Price&gt;</code> instances</li>
-                <li>Used <code>ValueListenableBuilder</code> for each price widget</li>
-                <li>Implemented frame budget monitoring with <code>SchedulerBinding</code></li>
-                <li>Added update batching when frame time exceeded 16ms</li>
-                <li>Cached widget instances for unchanged prices</li>
+                <li>Semantic and accessible</li>
+                <li>Fully styled via CSS</li>
+                <li>Nestable and composable</li>
+                <li>Copy-paste ready</li>
             </ul>
 
-            <h2>Results</h2>
-            <p>Maintained 60fps during peak trading hours. Battery usage reduced by 40%. Memory allocation dropped from
-                2MB/s to 200KB/s during active updates.</p>
+            <h3>Code Block Example</h3>
+            <p>Here's how to use <code>ValueListenableBuilder</code> for granular updates:</p>
 
-            <p>More importantly, user complaints about performance disappeared. The app now felt responsive even during
-                the most volatile market conditions.</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-file">price_widget.dart</span>
+                    <span class="code-lang">Dart</span>
+                </div>
+                <pre><code>ValueListenableBuilder&lt;Price&gt;(
+  valueListenable: priceNotifier,
+  builder: (_, price, __) {
+    return Text('\$${price.value}');
+  },
+)</code></pre>
+            </div>
 
-            <h2>Lessons</h2>
-            <p>Widget granularity matters more than clever state management. Sometimes the best optimization is knowing
-                when not to update.</p>
+            <p>This pattern ensures <em>only the affected widget</em> rebuilds when the price changes.</p>
 
-            <p>Performance isn't just about algorithms — it's about user experience. A technically perfect solution that
-                drops frames is worse than a simple solution that maintains 60fps.</p>
+            <h3>Callout Variants</h3>
+
+            <div class="callout">
+                <strong>Insight:</strong>
+                <p>Widget granularity matters more than clever state management tricks.</p>
+            </div>
+
+            <div class="callout callout-info">
+                <strong>Note:</strong>
+                <p>This approach requires Flutter 3.0 or higher for best performance.</p>
+            </div>
+
+            <div class="callout callout-success">
+                <strong>Result:</strong>
+                <p>FPS remained at 60 even with 200+ widgets updating every 100ms.</p>
+            </div>
+
+            <h2>Performance Comparison</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Before</th>
+                        <th>After</th>
+                        <th>Improvement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FPS</td>
+                        <td>15</td>
+                        <td>60</td>
+                        <td>+300%</td>
+                    </tr>
+                    <tr>
+                        <td>Memory Allocation</td>
+                        <td>2MB/s</td>
+                        <td>200KB/s</td>
+                        <td>-90%</td>
+                    </tr>
+                    <tr>
+                        <td>Battery Usage</td>
+                        <td>High</td>
+                        <td>Normal</td>
+                        <td>-40%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Media Examples</h2>
+
+            <figure>
+                <img src="https://via.placeholder.com/800x400/111111/666666?text=Performance+Profile"
+                    alt="DevTools showing performance improvement">
+                <figcaption>Flutter DevTools showing the optimization impact</figcaption>
+            </figure>
+
+            <h3>Before/After Comparison</h3>
+
+            <div class="media-grid">
+                <figure>
+                    <img src="https://via.placeholder.com/400x300/111111/666666?text=Before+15fps"
+                        alt="Before optimization">
+                    <figcaption>Before: Visible jank at 15fps</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300/111111/059669?text=After+60fps"
+                        alt="After optimization">
+                    <figcaption>After: Smooth 60fps</figcaption>
+                </figure>
+            </div>
+
+            <h2>Implementation Steps</h2>
+
+            <ol>
+                <li>Identify high-frequency update sources</li>
+                <li>Create individual <code>ValueNotifier</code> instances</li>
+                <li>Wrap each widget with <code>ValueListenableBuilder</code></li>
+                <li>Add frame budget monitoring
+                    <ul>
+                        <li>Use <code>SchedulerBinding</code></li>
+                        <li>Track frame render time</li>
+                        <li>Batch updates when > 16ms</li>
+                    </ul>
+                </li>
+                <li>Profile and iterate</li>
+            </ol>
+
+            <h2>Additional Resources</h2>
+
+            <ul class="link-list">
+                <li><a href="https://docs.flutter.dev/perf/best-practices" target="_blank" rel="noopener">Flutter
+                        Performance Best Practices</a></li>
+                <li><a href="https://api.flutter.dev/flutter/foundation/ValueListenableBuilder-class.html"
+                        target="_blank" rel="noopener">ValueListenableBuilder Docs</a></li>
+                <li><a href="#">Related: State Management Patterns</a></li>
+            </ul>
+
+            <hr>
+
+            <h2>Advanced Pattern: Two-Column Layout</h2>
+
+            <div class="two-columns">
+                <div>
+                    <h3>Approach A: ChangeNotifier</h3>
+                    <p><strong>Pros:</strong> Simple, familiar, less boilerplate</p>
+                    <p><strong>Cons:</strong> Rebuilds entire widget tree on any change</p>
+                </div>
+                <div>
+                    <h3>Approach B: ValueListenable</h3>
+                    <p><strong>Pros:</strong> Granular updates, better performance</p>
+                    <p><strong>Cons:</strong> More setup code required</p>
+                </div>
+            </div>
+
+            <h2>Deep Dive (Optional)</h2>
+
+            <details>
+                <summary>Click to see the complete implementation details</summary>
+                <p>The full implementation involved creating a custom <code>PriceUpdateScheduler</code> that monitors
+                    frame budget and batches updates when the system is under pressure.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-file">scheduler.dart</span>
+                        <span class="code-lang">Dart</span>
+                    </div>
+                    <pre><code>class PriceUpdateScheduler {
+  final _pending = &lt;String, Price&gt;{};
+  
+  void scheduleUpdate(String id, Price price) {
+    _pending[id] = price;
+    
+    if (_shouldBatch()) {
+      _scheduleBatch();
+    } else {
+      _updateImmediate(id, price);
+    }
+  }
+  
+  bool _shouldBatch() {
+    return SchedulerBinding.instance
+      .currentFrameTimeStamp.inMilliseconds > 16;
+  }
+}</code></pre>
+                </div>
+
+                <p>This approach reduced frame drops by 95% during peak load.</p>
+            </details>
+
+            <h2>Key Takeaways</h2>
+
+            <blockquote>
+                <p>The best optimization is often knowing when NOT to update. Granular state management lets widgets
+                    opt-in to updates rather than forcing everything to rebuild.</p>
+            </blockquote>
+
+            <div class="callout">
+                <strong>Lesson:</strong>
+                <p>Template-based development doesn't mean sacrificing flexibility. Modular HTML blocks are composable,
+                    maintainable, and fast to write.</p>
+            </div>
+
         </article>
 
         <footer>
