@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HTML Template Library — Dev Logs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <article>
+            <header>
+                <h1>HTML Template Library</h1>
+                <p>Copy-paste modular blocks for dev logs. All components are semantic, nestable, and style-ready.</p>
+            </header>
+
+            <!-- ========================================
+                 TEXT BLOCKS
+            ========================================= -->
+            <section>
+                <h2>📝 Text Blocks</h2>
+
+                <!-- Headings -->
+                <h3>Headings</h3>
+                <pre><code>&lt;h2&gt;Section Title&lt;/h2&gt;
+&lt;h3&gt;Subsection Title&lt;/h3&gt;
+&lt;h4&gt;Minor Heading&lt;/h4&gt;</code></pre>
+
+                <!-- Paragraphs -->
+                <h3>Paragraphs</h3>
+                <pre><code>&lt;p&gt;Regular paragraph text.&lt;/p&gt;</code></pre>
+
+                <!-- Emphasis -->
+                <h3>Text Emphasis</h3>
+                <pre><code>&lt;strong&gt;Bold text&lt;/strong&gt;
+&lt;em&gt;Italic text&lt;/em&gt;
+&lt;mark&gt;Highlighted text&lt;/mark&gt;
+&lt;del&gt;Strikethrough text&lt;/del&gt;
+&lt;code&gt;Inline code&lt;/code&gt;</code></pre>
+
+                <!-- Blockquote -->
+                <h3>Blockquote</h3>
+                <pre><code>&lt;blockquote&gt;
+    &lt;p&gt;A thoughtful quote or excerpt.&lt;/p&gt;
+&lt;/blockquote&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 LISTS
+            ========================================= -->
+            <section>
+                <h2>📋 Lists</h2>
+
+                <!-- Unordered List -->
+                <h3>Unordered List</h3>
+                <pre><code>&lt;ul&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+    &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+                <!-- Ordered List -->
+                <h3>Ordered List</h3>
+                <pre><code>&lt;ol&gt;
+    &lt;li&gt;First step&lt;/li&gt;
+    &lt;li&gt;Second step&lt;/li&gt;
+    &lt;li&gt;Third step&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+                <!-- Nested List -->
+                <h3>Nested List</h3>
+                <pre><code>&lt;ul&gt;
+    &lt;li&gt;Parent item
+        &lt;ul&gt;
+            &lt;li&gt;Child item 1&lt;/li&gt;
+            &lt;li&gt;Child item 2&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Another parent item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+                <!-- Mixed List -->
+                <h3>Mixed Nested List</h3>
+                <pre><code>&lt;ul&gt;
+    &lt;li&gt;Unordered parent
+        &lt;ol&gt;
+            &lt;li&gt;Ordered child 1&lt;/li&gt;
+            &lt;li&gt;Ordered child 2&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 CODE BLOCKS
+            ========================================= -->
+            <section>
+                <h2>💻 Code Blocks</h2>
+
+                <!-- Inline Code -->
+                <h3>Inline Code</h3>
+                <pre><code>Use &lt;code&gt;variableName&lt;/code&gt; for inline code.</code></pre>
+
+                <!-- Code Block -->
+                <h3>Code Block</h3>
+                <pre><code>&lt;pre&gt;&lt;code&gt;function example() {
+    return "Hello World";
+}
+&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+                <!-- Code Block with Language -->
+                <h3>Code Block with Language Label</h3>
+                <pre><code>&lt;div class="code-block"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;JavaScript&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;pre&gt;&lt;code&gt;const result = await fetchData();
+console.log(result);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+
+                <!-- Code with Filename -->
+                <h3>Code Block with Filename</h3>
+                <pre><code>&lt;div class="code-block"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-file"&gt;utils.js&lt;/span&gt;
+        &lt;span class="code-lang"&gt;JavaScript&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;pre&gt;&lt;code&gt;export function formatPrice(value) {
+    return `$${value.toFixed(2)}`;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 MEDIA
+            ========================================= -->
+            <section>
+                <h2>🖼️ Media</h2>
+
+                <!-- Image -->
+                <h3>Image</h3>
+                <pre><code>&lt;img src="images/screenshot.png" alt="Description of image"&gt;</code></pre>
+
+                <!-- Image with Caption -->
+                <h3>Image with Caption</h3>
+                <pre><code>&lt;figure&gt;
+    &lt;img src="images/screenshot.png" alt="Description"&gt;
+    &lt;figcaption&gt;Caption explaining the image&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+                <!-- Video -->
+                <h3>Video</h3>
+                <pre><code>&lt;video controls&gt;
+    &lt;source src="videos/demo.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+
+                <!-- Video with Caption -->
+                <h3>Video with Caption</h3>
+                <pre><code>&lt;figure&gt;
+    &lt;video controls&gt;
+        &lt;source src="videos/demo.mp4" type="video/mp4"&gt;
+    &lt;/video&gt;
+    &lt;figcaption&gt;Demo showing the feature in action&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+                <!-- Side-by-side Images -->
+                <h3>Side-by-side Images</h3>
+                <pre><code>&lt;div class="media-grid"&gt;
+    &lt;figure&gt;
+        &lt;img src="images/before.png" alt="Before"&gt;
+        &lt;figcaption&gt;Before optimization&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    &lt;figure&gt;
+        &lt;img src="images/after.png" alt="After"&gt;
+        &lt;figcaption&gt;After optimization&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 CALLOUTS & HIGHLIGHTS
+            ========================================= -->
+            <section>
+                <h2>💡 Callouts & Highlights</h2>
+
+                <!-- Basic Callout -->
+                <h3>Basic Callout</h3>
+                <pre><code>&lt;div class="callout"&gt;
+    &lt;p&gt;Important information or insight.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                <!-- Callout with Label -->
+                <h3>Callout with Label</h3>
+                <pre><code>&lt;div class="callout"&gt;
+    &lt;strong&gt;Insight:&lt;/strong&gt;
+    &lt;p&gt;Widget granularity matters more than clever state management.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                <!-- Warning Callout -->
+                <h3>Warning Callout</h3>
+                <pre><code>&lt;div class="callout callout-warning"&gt;
+    &lt;strong&gt;Warning:&lt;/strong&gt;
+    &lt;p&gt;This approach can cause memory leaks if not handled properly.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                <!-- Success Callout -->
+                <h3>Success Callout</h3>
+                <pre><code>&lt;div class="callout callout-success"&gt;
+    &lt;strong&gt;Result:&lt;/strong&gt;
+    &lt;p&gt;Performance improved by 60% after optimization.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                <!-- Info Callout -->
+                <h3>Info Callout</h3>
+                <pre><code>&lt;div class="callout callout-info"&gt;
+    &lt;strong&gt;Note:&lt;/strong&gt;
+    &lt;p&gt;This feature requires Flutter 3.0 or higher.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 LINKS
+            ========================================= -->
+            <section>
+                <h2>🔗 Links</h2>
+
+                <!-- Basic Link -->
+                <h3>Inline Link</h3>
+                <pre><code>&lt;a href="https://example.com"&gt;Link text&lt;/a&gt;</code></pre>
+
+                <!-- External Link -->
+                <h3>External Link (opens in new tab)</h3>
+                <pre><code>&lt;a href="https://example.com" target="_blank" rel="noopener"&gt;External resource&lt;/a&gt;</code></pre>
+
+                <!-- Link List -->
+                <h3>Link List</h3>
+                <pre><code>&lt;ul class="link-list"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Related article 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Related article 2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 TABLES
+            ========================================= -->
+            <section>
+                <h2>📊 Tables</h2>
+
+                <!-- Basic Table -->
+                <h3>Basic Table</h3>
+                <pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Metric&lt;/th&gt;
+            &lt;th&gt;Before&lt;/th&gt;
+            &lt;th&gt;After&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;FPS&lt;/td&gt;
+            &lt;td&gt;15&lt;/td&gt;
+            &lt;td&gt;60&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Memory&lt;/td&gt;
+            &lt;td&gt;2MB/s&lt;/td&gt;
+            &lt;td&gt;200KB/s&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+                <!-- Comparison Table -->
+                <h3>Comparison Table</h3>
+                <pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Approach&lt;/th&gt;
+            &lt;th&gt;Pros&lt;/th&gt;
+            &lt;th&gt;Cons&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;ChangeNotifier&lt;/td&gt;
+            &lt;td&gt;Simple, familiar&lt;/td&gt;
+            &lt;td&gt;Rebuilds entire tree&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;ValueListenable&lt;/td&gt;
+            &lt;td&gt;Granular updates&lt;/td&gt;
+            &lt;td&gt;More boilerplate&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 STRUCTURE
+            ========================================= -->
+            <section>
+                <h2>🏗️ Structure & Layout</h2>
+
+                <!-- Section -->
+                <h3>Section</h3>
+                <pre><code>&lt;section&gt;
+    &lt;h2&gt;Section Title&lt;/h2&gt;
+    &lt;p&gt;Content goes here...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+
+                <!-- Horizontal Rule -->
+                <h3>Divider</h3>
+                <pre><code>&lt;hr&gt;</code></pre>
+
+                <!-- Two Column Layout -->
+                <h3>Two Column Layout</h3>
+                <pre><code>&lt;div class="two-columns"&gt;
+    &lt;div&gt;
+        &lt;h3&gt;Column 1&lt;/h3&gt;
+        &lt;p&gt;Content for first column&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;h3&gt;Column 2&lt;/h3&gt;
+        &lt;p&gt;Content for second column&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+                <!-- Details/Summary (Collapsible) -->
+                <h3>Collapsible Section</h3>
+                <pre><code>&lt;details&gt;
+    &lt;summary&gt;Click to expand&lt;/summary&gt;
+    &lt;p&gt;Hidden content revealed when expanded.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 COMBINATIONS (NESTED EXAMPLES)
+            ========================================= -->
+            <section>
+                <h2>🧩 Nested & Combined Examples</h2>
+
+                <!-- Section with Multiple Elements -->
+                <h3>Rich Section Example</h3>
+                <pre><code>&lt;section&gt;
+    &lt;h2&gt;The Problem&lt;/h2&gt;
+    
+    &lt;p&gt;Real-time updates caused &lt;strong&gt;severe jank&lt;/strong&gt;.&lt;/p&gt;
+    
+    &lt;div class="callout callout-warning"&gt;
+        &lt;strong&gt;Issue:&lt;/strong&gt;
+        &lt;p&gt;FPS dropped from 60 to 15 during peak load.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;figure&gt;
+        &lt;img src="images/profiler.png" alt="Performance profile"&gt;
+        &lt;figcaption&gt;DevTools showing the bottleneck&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/section&gt;</code></pre>
+
+                <!-- Code with Explanation -->
+                <h3>Code with Context</h3>
+                <pre><code>&lt;p&gt;The solution uses &lt;code&gt;ValueListenableBuilder&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="code-block"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-file"&gt;price_widget.dart&lt;/span&gt;
+        &lt;span class="code-lang"&gt;Dart&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;pre&gt;&lt;code&gt;ValueListenableBuilder&lt;Price&gt;(
+  valueListenable: priceNotifier,
+  builder: (_, price, __) =&gt; Text('$${price.value}'),
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This ensures &lt;em&gt;only this widget&lt;/em&gt; rebuilds on price changes.&lt;/p&gt;</code></pre>
+
+                <!-- List with Nested Code -->
+                <h3>List with Inline Code</h3>
+                <pre><code>&lt;p&gt;Key optimizations:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Split state into &lt;code&gt;ValueNotifier&lt;/code&gt; instances&lt;/li&gt;
+    &lt;li&gt;Used &lt;code&gt;ValueListenableBuilder&lt;/code&gt; per widget&lt;/li&gt;
+    &lt;li&gt;Added frame budget monitoring&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+                <!-- Figure with Multiple Media -->
+                <h3>Before/After Comparison</h3>
+                <pre><code>&lt;div class="media-grid"&gt;
+    &lt;figure&gt;
+        &lt;video controls&gt;
+            &lt;source src="videos/before.mp4" type="video/mp4"&gt;
+        &lt;/video&gt;
+        &lt;figcaption&gt;Before: 15fps, jank visible&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    &lt;figure&gt;
+        &lt;video controls&gt;
+            &lt;source src="videos/after.mp4" type="video/mp4"&gt;
+        &lt;/video&gt;
+        &lt;figcaption&gt;After: Smooth 60fps&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+            </section>
+
+            <!-- ========================================
+                 COMPLETE LOG TEMPLATE
+            ========================================= -->
+            <section>
+                <h2>📄 Complete Log Template</h2>
+                <p>Copy this as a starting point for new logs:</p>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;Your Log Title — Jainam Shah&lt;/title&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;main&gt;
+        &lt;div class="back-link"&gt;
+            &lt;a href="logs.html"&gt;← Back to logs&lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;article&gt;
+            &lt;header&gt;
+                &lt;h1&gt;Your Log Title&lt;/h1&gt;
+                &lt;div class="article-meta"&gt;
+                    &lt;span class="log-meta"&gt;Tags · Here&lt;/span&gt;
+                    &lt;span class="log-date"&gt;Month Year&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/header&gt;
+
+            &lt;h2&gt;Section Title&lt;/h2&gt;
+            &lt;p&gt;Your content here...&lt;/p&gt;
+
+            &lt;!-- Add more sections as needed --&gt;
+        &lt;/article&gt;
+
+        &lt;footer&gt;
+            &lt;p&gt;© Jainam Shah · &lt;a href="logs.html"&gt;All Logs&lt;/a&gt; · &lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+            </section>
+
+        </article>
+
+        <footer>
+            <p>© Jainam Shah · <a href="index.html">Home</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>
