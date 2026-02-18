@@ -1,12 +1,12 @@
 ---
-id: blog-engine-go
-title: Building a High Performance Blog Engine in Go
+id: blog-resilient-frontend
+title: Resilient Frontend
 date: February 18, 2026
 tags: Go, Performance, Blogging
 description: Leveraging Go's concurrency model and standard library to build a blazing fast static site generator.
 ---
 
-# Why Go?
+# Fresh Start?
 
 Go is exceptionally well-suited for building CLI tools like this blog converter. With its native support for **concurrency** through goroutines and a strong standard library, we can process hundreds of files in milliseconds.
 
