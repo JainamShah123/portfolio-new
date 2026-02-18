@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Building a High Performance Blog Engine in Go — Jainam Shah</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="back-link">
+            <a href="../index.html">← Back to home</a>
+        </div>
+
+        <article>
+            <header>
+                <h1>Building a High Performance Blog Engine in Go</h1>
+                <div class="article-meta">
+                    <span class="log-meta">Go · Performance · Blogging</span>
+                    <span class="log-date">February 18, 2026</span>
+                </div>
+            </header>
+
+            <h1 id="why-go">Why Go?</h1>
+<p>Go is exceptionally well-suited for building CLI tools like this blog converter. With its native support for <strong>concurrency</strong> through goroutines and a strong standard library, we can process hundreds of files in milliseconds.</p>
+<h2 id="the-power-of-design">The Power of Design</h2>
+<blockquote class="quote-card">
+<p>Stability comes from designing for failures, not avoiding it</p>
+<footer>— Source: Release IT, Michael T. Nygard</p>
+</blockquote>
+<h2 id="the-concurrency-model">The Concurrency Model</h2>
+<p>In this project, we used a <strong>Worker Pool</strong> pattern:</p>
+<ol>
+<li><strong>Producer</strong>: Walks the directory and sends jobs to a channel.</li>
+<li><strong>Workers</strong>: A pool of goroutines that process the jobs.</li>
+<li><strong>WaitGroup</strong>: Ensures all workers finish before the program exits.</li>
+</ol>
+<pre><code class="language-go">func worker(id int, jobs &lt;-chan ConvertJob, wg *sync.WaitGroup, tmpl *template.Template, outputDir string) {
+	defer wg.Done()
+	for job := range jobs {
+		// process...
+	}
+}
+</code></pre>
+<h2 id="minimal-dependencies">Minimal Dependencies</h2>
+<p>By sticking to the standard library as much as possible, we keep the binary small and the build process fast. We only use <code>goldmark</code> for the heavy lifting of Markdown parsing.</p>
+<h3 id="how-to-use-it">How to use it</h3>
+<p>Just write your blog posts in the <code>blogs/</code> directory and run the converter!</p>
+
+        </article>
+
+        <footer>
+            <p>© Jainam Shah · <a href="../index.html">Home</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>

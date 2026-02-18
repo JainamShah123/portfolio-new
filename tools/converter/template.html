@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{.Title}} — Jainam Shah</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="back-link">
+            <a href="../index.html">← Back to home</a>
+        </div>
+
+        <article>
+            <header>
+                <h1>{{.Title}}</h1>
+                <div class="article-meta">
+                    <span class="log-meta">{{range $i, $tag := .Tags}}{{if $i}} · {{end}}{{$tag}}{{end}}</span>
+                    <span class="log-date">{{.Date}}</span>
+                </div>
+            </header>
+
+            {{.Content}}
+        </article>
+
+        <footer>
+            <p>© Jainam Shah · <a href="../index.html">Home</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>

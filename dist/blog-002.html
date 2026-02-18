@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Power of Goroutines — Jainam Shah</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="back-link">
+            <a href="../index.html">← Back to home</a>
+        </div>
+
+        <article>
+            <header>
+                <h1>The Power of Goroutines</h1>
+                <div class="article-meta">
+                    <span class="log-meta">Go · Concurrency</span>
+                    <span class="log-date">February 17, 2026</span>
+                </div>
+            </header>
+
+            <h1 id="goroutines-are-lightweight">Goroutines are Lightweight</h1>
+<p>Unlike OS threads, goroutines are managed by the Go runtime and start with a very small stack size. This allows you to run millions of them in a single program.</p>
+<h2 id="performance-comparison">Performance Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>OS Thread</th>
+<th>Goroutine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Startup</td>
+<td>Slow</td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>~1MB</td>
+<td>~2KB</td>
+</tr>
+<tr>
+<td>Context Switch</td>
+<td>Expensive</td>
+<td>Cheap</td>
+</tr>
+</tbody>
+</table>
+
+        </article>
+
+        <footer>
+            <p>© Jainam Shah · <a href="../index.html">Home</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>
