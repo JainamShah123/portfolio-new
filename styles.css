@@ -408,19 +408,35 @@ footer {
     border-top: 1px solid var(--border);
     font-size: 0.85rem;
     color: var(--muted);
+}
+
+.footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-footer a {
-    color: var(--muted);
-    border-bottom-color: transparent;
+.footer-icons {
+    display: flex;
+    gap: 20px;
 }
 
-footer a:hover {
+.footer-icons a {
+    color: var(--muted);
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.footer-icons a:hover {
     color: var(--fg);
-    border-bottom-color: var(--fg);
+}
+
+.footer-icons svg,
+.footer-icons iconify-icon {
+    width: 20px;
+    height: 20px;
 }
 
 /* Callouts */

@@ -30,6 +30,7 @@ type Post struct {
 	Description string
 	Content     []byte
 	RelativeURL string
+	Styles      string // Inlined CSS
 	IndexHTML   string // Pre-rendered HTML for the log-item
 }
 
@@ -47,12 +48,13 @@ var writerPool = sync.Pool{
 
 type CompiledTemplate struct {
 	// Stores the static HTML parts between the dynamic variables
-	seg [6][]byte
+	seg [7][]byte
 }
 
 var placeholders = []string{
 	"{{.Title}}",
-	"{{.Title}}", // Assumes Title appears twice (e.g., <title> and <h1>)
+	"{{.Styles}}",
+	"{{.Title}}",
 	`{{range $i, $tag := .Tags}}{{if $i}} · {{end}}{{$tag}}{{end}}`,
 	"{{.Date}}",
 	"{{.Content}}",
@@ -76,7 +78,7 @@ func compileTemplate(path string) (*CompiledTemplate, error) {
 		ct.seg[i] = append([]byte(nil), remaining[:idx]...)
 		remaining = remaining[idx+len(ph):]
 	}
-	ct.seg[5] = append([]byte(nil), remaining...)
+	ct.seg[6] = append([]byte(nil), remaining...)
 	return ct, nil
 }
 
@@ -85,8 +87,10 @@ func (ct *CompiledTemplate) render(post Post, w *bufio.Writer) {
 	w.Write(ct.seg[0])
 	w.WriteString(post.Title)
 	w.Write(ct.seg[1])
-	w.WriteString(post.Title)
+	w.WriteString(post.Styles)
 	w.Write(ct.seg[2])
+	w.WriteString(post.Title)
+	w.Write(ct.seg[3])
 
 	// Optimized Tag Join
 	for i, tag := range post.Tags {
@@ -96,11 +100,11 @@ func (ct *CompiledTemplate) render(post Post, w *bufio.Writer) {
 		w.WriteString(tag)
 	}
 
-	w.Write(ct.seg[3])
-	w.WriteString(post.Date)
 	w.Write(ct.seg[4])
-	w.Write(post.Content)
+	w.WriteString(post.Date)
 	w.Write(ct.seg[5])
+	w.Write(post.Content)
+	w.Write(ct.seg[6])
 }
 
 // ─── 3. Main Execution Flow ───────────────────────────────────────────────────
@@ -110,13 +114,26 @@ func main() {
 
 	// Config
 	inputDir := filepath.Clean("../../blogs")
-	outputDir := filepath.Clean("../../dist")
+	outputDir := filepath.Clean("../../")
 	templatePath := filepath.Clean("template.html")
+	stylesPath := filepath.Clean("../../styles.css")
 	indexPaths := []string{filepath.Clean("../../index.html")}
 
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		log.Fatalf("Failed to create dist: %v", err)
 	}
+
+	stylesRaw, err := os.ReadFile(stylesPath)
+	if err != nil {
+		log.Fatalf("Styles Error: %v", err)
+	}
+	styles := stripCSSComments(string(stylesRaw))
+
+	tmplRaw, err := os.ReadFile(templatePath)
+	if err != nil {
+		log.Fatalf("Template Error: %v", err)
+	}
+	templateContent := string(tmplRaw)
 
 	tmpl, err := compileTemplate(templatePath)
 	if err != nil {
@@ -153,7 +170,7 @@ func main() {
 		go func() {
 			defer wg.Done()
 			for path := range jobs {
-				post, err := processFile(path, tmpl, md, outputDir)
+				post, err := processFile(path, tmpl, md, outputDir, styles, templateContent)
 				if err != nil {
 					log.Printf("Skipping %s: %v", path, err)
 					continue
@@ -177,7 +194,7 @@ func main() {
 	})
 
 	for _, indexPath := range indexPaths {
-		if err := updateIndex(indexPath, posts); err != nil {
+		if err := updateIndex(indexPath, posts, styles); err != nil {
 			log.Printf("Index Update Error: %v", err)
 		}
 	}
@@ -187,7 +204,7 @@ func main() {
 
 // ─── 4. File Processing (The Hot Path) ────────────────────────────────────────
 
-func processFile(path string, tmpl *CompiledTemplate, md goldmark.Markdown, outputDir string) (Post, error) {
+func processFile(path string, tmpl *CompiledTemplate, md goldmark.Markdown, outputDir string, fullCSS string, templateHTML string) (Post, error) {
 	raw, err := os.ReadFile(path)
 	if err != nil {
 		return Post{}, err
@@ -209,6 +226,7 @@ func processFile(path string, tmpl *CompiledTemplate, md goldmark.Markdown, outp
 
 	// Byte-level post-processing
 	htmlBytes := fastProcessQuoteCards(buf.Bytes())
+	htmlBytes = fastProcessAssetPaths(htmlBytes)
 
 	// Meta parsing
 	base := filepath.Base(path)
@@ -240,7 +258,8 @@ func processFile(path string, tmpl *CompiledTemplate, md goldmark.Markdown, outp
 		Tags:        tags,
 		Description: meta["description"],
 		Content:     htmlBytes, // No copy, points to new slice from fastProcess
-		RelativeURL: "dist/" + name + ".html",
+		RelativeURL: name + ".html",
+		Styles:      optimizeCSS(fullCSS, templateHTML+string(htmlBytes)),
 	}
 	if post.ID == "" {
 		post.ID = name
@@ -364,7 +383,11 @@ func fastProcessQuoteCards(input []byte) []byte {
 	return out
 }
 
-func updateIndex(path string, posts []Post) error {
+func fastProcessAssetPaths(input []byte) []byte {
+	return bytes.ReplaceAll(input, []byte("../assets/"), []byte("assets/"))
+}
+
+func updateIndex(path string, posts []Post, fullCSS string) error {
 	content, err := os.ReadFile(path)
 	if err != nil {
 		return err
@@ -396,5 +419,167 @@ func updateIndex(path string, posts []Post) error {
 	buf.WriteString("\n            ")
 	buf.Write(content[endIdx:])
 
-	return os.WriteFile(path, buf.Bytes(), 0644)
+	// Inline CSS for Index
+	finalHTML := buf.Bytes()
+	cssStart := bytes.Index(finalHTML, []byte("<!-- CSS_START -->"))
+	cssEnd := bytes.Index(finalHTML, []byte("<!-- CSS_END -->"))
+
+	if cssStart != -1 && cssEnd != -1 {
+		optimized := optimizeCSS(fullCSS, string(finalHTML))
+		var result bytes.Buffer
+		result.Write(finalHTML[:cssStart])
+		result.WriteString("<style>\n")
+		result.WriteString(optimized)
+		result.WriteString("\n    </style>")
+		result.Write(finalHTML[cssEnd+len("<!-- CSS_END -->"):])
+		finalHTML = result.Bytes()
+	}
+
+	return os.WriteFile(path, finalHTML, 0644)
 }
+
+// ─── 6. CSS Optimization ─────────────────────────────────────────────────────
+
+func optimizeCSS(css string, html string) string {
+	// Simple CSS Purger
+	// 1. Minify (sort of)
+	css = strings.ReplaceAll(css, "\r", "")
+
+	var sb strings.Builder
+	remaining := css
+
+	for {
+		idx := strings.Index(remaining, "{")
+		if idx == -1 {
+			break
+		}
+		selectors := strings.TrimSpace(remaining[:idx])
+		endIdx := strings.Index(remaining[idx:], "}")
+		if endIdx == -1 {
+			break
+		}
+		endIdx += idx
+		body := remaining[idx : endIdx+1]
+		remaining = remaining[endIdx+1:]
+
+		// Handle @media - we just include them if they contain used selectors
+		if strings.HasPrefix(selectors, "@media") {
+			// Extract rules inside @media
+			inner := body[1 : len(body)-1]
+			optimizedInner := optimizeCSS(inner, html)
+			if optimizedInner != "" {
+				sb.WriteString(selectors)
+				sb.WriteString(" {\n")
+				sb.WriteString(optimizedInner)
+				sb.WriteString("\n}\n")
+			}
+			continue
+		}
+
+		// Check if any of the selectors is used
+		used := false
+		parts := strings.Split(selectors, ",")
+		for _, sel := range parts {
+			if isSelectorUsed(strings.TrimSpace(sel), html) {
+				used = true
+				break
+			}
+		}
+
+		if used {
+			sb.WriteString(selectors)
+			sb.WriteString(" ")
+			sb.WriteString(body)
+			sb.WriteString("\n")
+		}
+	}
+
+	return strings.TrimSpace(sb.String())
+}
+
+func isSelectorUsed(selector string, html string) bool {
+	// Very naive but effective for this specific project
+	// Check for tags and classes
+	if selector == "*" || selector == ":root" || selector == "body" || selector == "main" || selector == "html" || selector == "header" || selector == "footer" {
+		return true
+	}
+
+	// Remove pseudo-classes and pseudo-elements
+	if idx := strings.Index(selector, ":"); idx != -1 {
+		selector = selector[:idx]
+	}
+
+	// Remove attribute selectors
+	if idx := strings.Index(selector, "["); idx != -1 {
+		selector = selector[:idx]
+	}
+
+	selector = strings.TrimSpace(selector)
+	if selector == "" {
+		return true
+	}
+
+	// Split by space for descendant selectors
+	parts := strings.Fields(selector)
+	for _, p := range parts {
+		// handle combined selectors like h1.title
+		if strings.Contains(p, ".") {
+			sub := strings.Split(p, ".")
+			// sub[0] is tag (optional), sub[1:] are classes
+			if sub[0] != "" && !strings.Contains(html, "<"+sub[0]) {
+				return false
+			}
+			for i := 1; i < len(sub); i++ {
+				if !hasClass(html, sub[i]) {
+					return false
+				}
+			}
+			continue
+		}
+
+		// If it's a class
+		if strings.HasPrefix(p, ".") {
+			if !hasClass(html, p[1:]) {
+				return false
+			}
+			continue
+		}
+		// If it's an ID
+		if strings.HasPrefix(p, "#") {
+			id := p[1:]
+			if !strings.Contains(html, `id="`+id+`"`) {
+				return false
+			}
+			continue
+		}
+		// If it's a tag
+		if !strings.Contains(strings.ToLower(html), "<"+strings.ToLower(p)) {
+			return false
+		}
+	}
+
+	return true
+}
+
+func hasClass(html string, className string) bool {
+	return strings.Contains(html, `class="`+className+`"`) ||
+		strings.Contains(html, ` "`+className+`"`) ||
+		strings.Contains(html, `class="`+className+` `) ||
+		strings.Contains(html, ` "`+className+` `)
+}
+
+func stripCSSComments(css string) string {
+	for {
+		start := strings.Index(css, "/*")
+		if start == -1 {
+			break
+		}
+		end := strings.Index(css[start:], "*/")
+		if end == -1 {
+			break
+		}
+		css = css[:start] + css[start+end+2:]
+	}
+	return css
+}
+

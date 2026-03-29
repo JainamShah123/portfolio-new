@@ -13,14 +13,19 @@
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="../styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Iconify Icons -->
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+    <!-- Styles: Inlined at build time -->
+    <style>{{.Styles}}</style>
 </head>
 
 <body>
     <main>
         <div class="back-link">
-            <a href="../index.html">← Back to home</a>
+            <a href="index.html">← Back to home</a>
         </div>
 
         <article>
@@ -36,9 +41,28 @@
         </article>
 
         <footer>
-            <p>© Jainam Shah · <a href="../index.html">Home</a></p>
+            <div class="footer-content">
+                <p>© Jainam Shah</p>
+                <div class="footer-icons">
+                    <a href="https://github.com/JainamShah123" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <iconify-icon icon="lucide:github"></iconify-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jainam-shah-%E2%98%81%EF%B8%8F-086a93247/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <iconify-icon icon="lucide:linkedin"></iconify-icon>
+                    </a>
+                    <a href="https://x.com/JainamShah90241" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <iconify-icon icon="lucide:twitter"></iconify-icon>
+                    </a>
+                    <a href="mailto:hey@jainamshah.dev" aria-label="Email">
+                        <i data-lucide="mail"></i>
+                    </a>
+                </div>
+            </div>
         </footer>
     </main>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>

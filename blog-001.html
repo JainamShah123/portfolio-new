@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resilient Frontend — Jainam Shah</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Iconify Icons -->
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+    <!-- Styles: Inlined at build time -->
+    <style>:root {
+    
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #666666;
+    --muted-bg: rgba(0, 0, 0, 0.04);
+    --border: #e5e5e5;
+    --accent: #2563eb;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --max-width: 680px;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+}
+main {
+    max-width: var(--max-width);
+    padding: 60px 24px;
+    margin: 0 auto;
+}
+h1,
+h2,
+h3 {
+    font-family: "Space Grotesk", sans-serif;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px 0;
+    font-weight: 500;
+}
+p {
+    margin: 0 0 16px 0;
+    color: var(--fg);
+}
+.log-date {
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 400;
+}
+.log-meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+article {
+    max-width: 100%;
+}
+article header {
+    margin-bottom: 48px;
+}
+article h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+.article-meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+.article-meta .log-meta {
+    margin-bottom: 0;
+}
+.article-meta .log-date {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+.article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+ul {
+    margin: 16px 0;
+    padding-left: 20px;
+    color: var(--muted);
+}
+.back-link {
+    margin-bottom: 32px;
+}
+.back-link a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+}
+.back-link a:hover {
+    color: var(--fg);
+    border-bottom-color: var(--fg);
+}
+footer {
+    margin-top: 100px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-icons {
+    display: flex;
+    gap: 20px;
+}
+.footer-icons a {
+    color: var(--muted);
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.footer-icons a:hover {
+    color: var(--fg);
+}
+.footer-icons svg,
+.footer-icons iconify-icon {
+    width: 20px;
+    height: 20px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 24px 0;
+}
+blockquote {
+    margin: 24px 0;
+    padding-left: 20px;
+    border-left: 3px solid var(--border);
+    color: var(--muted);
+    font-style: italic;
+}
+blockquote p {
+    margin: 0;
+}
+.quote-card {
+    margin: 40px 0;
+    padding: 32px;
+    background: var(--muted-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 16px 16px 0;
+    position: relative;
+    overflow: hidden;
+}
+.quote-card::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    font-size: 8rem;
+    color: var(--accent);
+    opacity: 0.05;
+    font-family: serif;
+}
+.quote-card p {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    margin-bottom: 16px;
+    color: var(--fg);
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+}
+.quote-card footer {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+strong {
+    font-weight: 600;
+    color: var(--fg);
+}
+a {
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+}
+a:hover {
+    border-bottom-color: var(--fg);
+}
+article a {
+    font-weight: 500;
+}
+ol {
+    margin: 16px 0;
+    padding-left: 20px;
+    color: var(--muted);
+}
+ol li,
+ul li {
+    margin-bottom: 8px;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+    margin: 8px 0 8px 20px;
+}
+h1 {
+        font-size: 1.8rem;
+    }</style>
+</head>
+
+<body>
+    <main>
+        <div class="back-link">
+            <a href="index.html">← Back to home</a>
+        </div>
+
+        <article>
+            <header>
+                <h1>Resilient Frontend</h1>
+                <div class="article-meta">
+                    <span class="log-meta">Python · Automation · Resilience · UX</span>
+                    <span class="log-date">March 29, 2026</span>
+                </div>
+            </header>
+
+            <p><img src="assets/001-resilient-frontend.avif" alt="Resilient Frontend"></p>
+<blockquote class="quote-card">
+<p>A fault tolerant system does not prevent faults. It prevents fault from becoming failures</p>
+<footer>— Source: The Art of Fault-Tolerant System Design</footer>
+</blockquote>
+<h1 id="a-fresh-start">A Fresh Start</h1>
+<p>I got a new job and a new project to work on. It was quite simple—a workflow that the business team required to automate:</p>
+<ol>
+<li>Read Excel Sheet</li>
+<li>Make a GET request</li>
+<li>Save new data in the Excel Sheet</li>
+</ol>
+<p>Along with the core logic, I needed to create a GUI for the team to use the tool. I completed the task in no time. I used <strong>Python</strong> for the business logic, <strong>PySide6</strong> for the GUI, <strong>Pandas</strong> for Excel processing, and the <strong>Requests</strong> library for API calls. I even used PyInstaller to ship it as a standalone Windows application.</p>
+<p>I thoroughly reviewed the UI and UX. I used highly readable Inter fonts, smooth icons, and a tiny local database for preferences. The end product was user-friendly, simple, and exactly what the team needed.</p>
+<h1 id="hole-in-the-pot">Hole In The Pot</h1>
+<p>On my machine, it worked flawlessly. The process completed in seconds. But then... the business team called. The tool wasn't working.</p>
+<p>I had assumed that if it worked on my machine, it would work on theirs. I was wrong. The failures were:</p>
+<ul>
+<li><strong>Timeouts</strong>: Frequent occurrences under load or when the service downscaled after &quot;Active Hours&quot;.</li>
+<li><strong>Partial Processing</strong>: Data was being processed partially, leading to reliability issues.</li>
+<li><strong>Heavy Turn Around Time</strong>: The processing time was too long for larger datasets.</li>
+</ul>
+<h1 id="the-core-issue">The Core Issue</h1>
+<p>After reading some insights from <a href="https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/">AWS developers</a>, I identified the bottlenecks:</p>
+<ol>
+<li><strong>Huge Payloads</strong>: Sending 80+ rows in a single request.</li>
+<li><strong>No Retries</strong>: The system just gave up on the first failure.</li>
+<li><strong>Manual Failsafe</strong>: No way for a human to recover without restarting everything.</li>
+</ol>
+<h1 id="the-real-engineering">The Real Engineering</h1>
+<p>To fix this, I moved away from &quot;perfect world&quot; assumptions and designed for failure:</p>
+<ul>
+<li><strong>Batching</strong>: I divided the 80+ rows into batches of 5, reducing the payload size significantly.</li>
+<li><strong>Concurrency</strong>: I implemented 5 concurrent requests. Combined with batching, this made retrievals faster and more reliable.</li>
+<li><strong>Auto Retry</strong>: Since failures were often transient, I added automatic retries. Most failed requests succeeded on the second attempt.</li>
+<li><strong>Manual Failsafe</strong>: I added a manual retry button for individual failed entries. It's rarely needed now, but it's there for a better user experience.</li>
+<li><strong>State Persistence</strong>: If a power failure or crash occurs halfway through, the script now detects the partially completed Excel sheet and resumes from where it left off.</li>
+</ul>
+<h1 id="the-lesson">The Lesson</h1>
+<blockquote class="quote-card">
+<p>Stability comes from designing for failures, not avoiding it.</p>
+<footer>— Source: Release IT, Michael T. Nygard</footer>
+</blockquote>
+<p>This saved me from debugging third-party API failures that were out of my control. The work was &quot;simple&quot; in theory, but implementing these real-world failsafes turned a fragile script into a stable engineering solution.</p>
+
+        </article>
+
+        <footer>
+            <div class="footer-content">
+                <p>© Jainam Shah</p>
+                <div class="footer-icons">
+                    <a href="https://github.com/JainamShah123" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <iconify-icon icon="lucide:github"></iconify-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jainam-shah-%E2%98%81%EF%B8%8F-086a93247/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <iconify-icon icon="lucide:linkedin"></iconify-icon>
+                    </a>
+                    <a href="https://x.com/JainamShah90241" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <iconify-icon icon="lucide:twitter"></iconify-icon>
+                    </a>
+                    <a href="mailto:hey@jainamshah.dev" aria-label="Email">
+                        <i data-lucide="mail"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

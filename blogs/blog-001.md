@@ -6,7 +6,7 @@ tags: Python, Automation, Resilience, UX
 description: A story about turning a fragile automation tool into a resilient, fault-tolerant system.
 ---
 
-![Resilient Frontend](../assets/001-resilient-frontend.png)
+![Resilient Frontend](../assets/001-resilient-frontend.avif)
 
 > A fault tolerant system does not prevent faults. It prevents fault from becoming failures
 >
