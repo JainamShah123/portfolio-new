@@ -1,4 +1,4 @@
-package main
+	package main
 
 import (
 	"bufio"
@@ -328,20 +328,37 @@ func parseMarkdown(content []byte) (map[string]string, []byte) {
 }
 
 func fastProcessQuoteCards(input []byte) []byte {
-	// We chain replacements. Note: bytes.ReplaceAll allocates a new slice.
-	// For 1000 files, this is acceptable.
-	// To go faster requires a custom single-pass byte processor,
-	// but that is complex to maintain.
 	out := bytes.ReplaceAll(input, []byte("<blockquote>"), []byte(`<blockquote class="quote-card">`))
 
-	// Only look for footer replacements if we see a paragraph start (optimization)
 	if bytes.Contains(out, []byte("<p>")) {
+		// Replace start of footer
 		out = bytes.ReplaceAll(out, []byte("<p>\u2014"), []byte("<footer>\u2014"))
 		out = bytes.ReplaceAll(out, []byte("<p>--"), []byte("<footer>--"))
 
+		// Robustly replace the corresponding closing tag
+		// We look for <footer> and find the next </p>
 		if bytes.Contains(out, []byte("<footer>")) {
-			out = bytes.ReplaceAll(out, []byte("\u2014</p>"), []byte("\u2014</footer>"))
-			out = bytes.ReplaceAll(out, []byte("--</p>"), []byte("--</footer>"))
+			var result bytes.Buffer
+			remaining := out
+			for {
+				footerIdx := bytes.Index(remaining, []byte("<footer>"))
+				if footerIdx == -1 {
+					result.Write(remaining)
+					break
+				}
+				// Write up to the end of <footer>...
+				closeTagStart := bytes.Index(remaining[footerIdx:], []byte("</p>"))
+				if closeTagStart != -1 {
+					closeTagStart += footerIdx
+					result.Write(remaining[:closeTagStart])
+					result.WriteString("</footer>")
+					remaining = remaining[closeTagStart+4:]
+				} else {
+					result.Write(remaining)
+					break
+				}
+			}
+			out = result.Bytes()
 		}
 	}
 	return out
